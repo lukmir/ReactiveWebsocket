@@ -39,6 +39,10 @@ public class Client {
         asyncResponse.resume(message);
     }
 
+    public void send(String message) {
+        session.getAsyncRemote().sendText(message);
+    }
+
     public void close() {
         try {
             session.close();
