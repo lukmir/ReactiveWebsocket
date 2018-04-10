@@ -10,7 +10,7 @@ import java.util.List;
 
 @Singleton
 @ServerEndpoint(value = "/websocketServer")
-public class WebsockerServer {
+public class WebsocketServer {
 
     private final List<Session> sessionList = Collections.synchronizedList(new ArrayList<>());
 
@@ -31,8 +31,8 @@ public class WebsockerServer {
 
     @OnMessage
     public void onMessage(String message, Session session) {
-        sessionList.stream().filter( p -> p.isOpen()).forEachOrdered( p -> {
-            p.getAsyncRemote().sendText(message + " - Total sessions: " + sessionList.size());
-        });
+        sessionList.stream().filter( p -> p.isOpen())
+                .forEachOrdered( p ->
+                        p.getAsyncRemote().sendText(message + " - Total sessions: " + sessionList.size()));
     }
 }

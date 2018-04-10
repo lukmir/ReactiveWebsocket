@@ -14,11 +14,9 @@ public class Client {
     private final String serverPath = "ws://localhost:8080/ReactiveWebsocket/websocketServer";
 
     private Session session;
-    private final AsyncResponse asyncResponse;
+    private AsyncResponse asyncResponse;
 
-    public Client(AsyncResponse asyncResponse) {
-        this.asyncResponse = asyncResponse;
-    }
+    public Client() {}
 
     public void connect() {
         WebSocketContainer webSocketContainer = ContainerProvider.getWebSocketContainer();
@@ -27,6 +25,10 @@ public class Client {
         } catch (URISyntaxException | DeploymentException | IOException ex) {
             System.err.println(ex.getMessage());
         }
+    }
+
+    public void setAsyncResponse(AsyncResponse asyncResponse) {
+        this.asyncResponse = asyncResponse;
     }
 
     @OnOpen

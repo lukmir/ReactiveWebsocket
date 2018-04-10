@@ -15,7 +15,8 @@ public class RestService {
 
     @GET
     public void service(@Suspended AsyncResponse asyncResponse) {
-        Client client = new Client(asyncResponse);
+        Client client = new Client();
+        client.setAsyncResponse(asyncResponse);
         client.connect();
         client.send("Message from client " + new Date().getTime());
         client.close();
